@@ -25,6 +25,15 @@ function App() {
   const [ageVerified, setAgeVerified] = useState(false);
   const { cartItems, addToCart, removeFromCart, updateCartQuantity, clearCart } = useCart();
 
+  const handleAgeVerification = (isAdult) => {
+    if (isAdult) {
+      setAgeVerified(true);
+    } else {
+      // Redirecionar para um site apropriada se não for adulto
+      window.location.href = 'https://www.google.com';
+    }
+  };
+
   // Aplicar cores personalizadas
   useEffect(() => {
     const root = document.documentElement;
@@ -34,10 +43,6 @@ function App() {
     root.style.setProperty('--background', branding.colors.background);
     root.style.setProperty('--text', branding.colors.text);
   }, []);
-
-  const handleAgeVerification = (isAdult) => {
-    setAgeVerified(isAdult);
-  };
 
   // Mostrar verificação de idade se habilitada
   if (branding.ageVerification.enabled && !ageVerified) {
